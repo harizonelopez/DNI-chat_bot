@@ -5,9 +5,11 @@ app = Flask(__name__)
 app.secret_key = 'aladinh-montext'
 
 pairs = [
-    ["hi|hello|hey|hy", ["Hello!", "Hi there!", "Hey!", "Hello, how can I assist you today!"]],
+    ["hi|hello|hey|hy|yoh what's up|hey niggah|hey buddy", ["Hello!", "Hi there!", "Hey!", "Hello, how can I assist you today!"]],
     ["how are you|how are you today|how are you doing", ["I'm doing well, thank you!", "I'm great. How about you?", "I'm cool, so what's up?"]],
+    ["okay|cool|thanks|thank you|your welcome|ok", ["Your welcome, how can I help you today", "That's awesome", "I appreciate, I hope you are cool also"]],
     ["what is your name", ["I'm a D.N.I chatbot.", "You can simply call me DNI as your wish."]],
+    ["which services do you provide|what are the things you offer|services you offer|things you offer|what do you do", ["I mainly offer services related to technology", "My main focus is to provide you with tech related things", "I can offer you with variety of things mainly dwelling around tech."]],
     ["quit|q|close", ["Goodbye!", "Bye!", "Nice chatting with you.", "Cool, it was nice interacting with you."]],
     ["what is DNI|what is D.N.I", ["The word D.N.I simply means your DIGNITY NATURES YOUR IDENTITY.", "DIGNITY NATURES YOUR IDENTITY", "This is the abbreviation of DIGNITY NATURES YOUR IDENTITY"]],
     ["which programming language were you developed of|which programming language was used in  your development", ["I was made using pythoon language", "basically its python-flask framework", "the base language is python"]],
