@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Bot</title>
+    <title>D.N.I Chat-Bot</title>
     <style>
         body {
             display: flex;
@@ -24,7 +24,7 @@
         header {
             background-color: #1e2229;
             text-align: center;
-            padding: 1em;
+            padding: 2em;
         }
 
         h1, h2 {
@@ -75,7 +75,7 @@
         }
 
         a:hover {
-            border-bottom: 2px solid #FF6347;
+            border-bottom: 3px solid #FF6347;
         }
 
     </style>
@@ -83,9 +83,9 @@
 
 <body>
     <section>
-        <h1 align="center">Chatbot</h1>
+        <h1 align="center"> Chatbot </h1>
         <section>
-            <form action="/chat" method="POST">
+            <form action={{ url_for('chat') }} method="POST">
                 <div class="form-group">
                     <label for="user_input" class="from-label">You:</label>
                     <input 
@@ -93,7 +93,7 @@
                         class="form-control"
                         name="user_input" 
                         id="user_input" required
-                        placeholder="message Chatbot...?">
+                        placeholder="Message D.N.I Chatbot...?">
                     </input>
                     <br>
 
@@ -133,5 +133,4 @@
     </section>
 </body>
 </html>
-
 {% endblock %}
