@@ -5,6 +5,7 @@ app = Flask(__name__)
 app.secret_key = 'aladinh-montext'
 
 pairs = [
+    ["who is Harison.O.O|Harison is who|who is Harison", ["This name refers to my creator and developer, a computer science student at one of the main universities in Kenya", "Harison is a tech student at Murang'a university in Kenya", "Harison is a coding enthusiast who came up with the idea to develop a chatbot called D.N.I"]],
     ["hi|hello|hey|hy|yoh what's up|hey niggah|hey buddy", ["Hello!", "Hi there!", "Hey!", "Hello, how can I assist you today!"]],
     ["how are you|how are you today|how are you doing", ["I'm doing well, thank you!", "I'm great. How about you?", "I'm cool, so what's up?"]],
     ["okay|cool|thanks|thank you|your welcome|ok", ["Your welcome, how can I help you today", "That's awesome", "I appreciate, I hope you are cool also"]],
@@ -21,6 +22,10 @@ chatbot = Chat(pairs, reflections)
 @app.route("/")
 def home():
     return render_template("home.html")
+
+@app.route("/index")
+def index():    
+    return render_template('index.html')
 
 @app.route("/chat", methods=["POST"])
 def chat():
