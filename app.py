@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
 from nltk.chat.util import Chat, reflections
 import random
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
 app.secret_key = 'aladinh-montext'
@@ -10,7 +13,7 @@ pairs = [
     ["hi|hello|hey|hy|yoh what's up|hey niggah|hey buddy", ["Hello!", "Hi there!", "Hey!", "Hello, how can I assist you today!"]],
     ["how are you|how are you today|how are you doing", ["I'm doing well, thank you!", "I'm great. How about you?", "I'm cool, so what's up?"]],
     ["okay|cool|thanks|thank you|your welcome|ok", ["Your welcome, how can I help you today", "That's awesome", "I appreciate, I hope you are cool also"]],
-    ["what is your name", ["I'm a D.N.I chatbot.", "You can simply call me DNI as your wish."]],
+    ["what is your name|what is your identity|how do i call you", ["You can simply call me DNI as your wish.", "I'm D.N.I chatbot."]],
     ["which services do you provide|what are the things you offer|services you offer|things you offer|what do you do", ["I mainly offer services related to technology", "My main focus is to provide you with tech related things", "I can offer you with variety of things mainly dwelling around tech."]],
     ["quit|q|close", ["Goodbye!", "Bye!", "Nice chatting with you.", "Cool, it was nice interacting with you."]],
     ["what is DNI|what is D.N.I", ["The word D.N.I simply means your DIGNITY NATURES YOUR IDENTITY.", "DIGNITY NATURES YOUR IDENTITY", "This is the abbreviation of DIGNITY NATURES YOUR IDENTITY"]],
@@ -19,6 +22,8 @@ pairs = [
 ]
 
 chatbot = Chat(pairs, reflections)
+
+chat_history = []
 
 @app.route("/")
 def home():
@@ -37,11 +42,15 @@ def chat():
                 return render_template("home.html", user_input=user_input, response=response, error_message=error_message)
     
     response = chatbot.respond(user_input)
-    return render_template("home.html", user_input=user_input, response=response, error_message=error_message)
+    
+    chat_history.append({"user_input": user_input, "response": response})
+    print("Chat history:", chat_history)
+    
+    return render_template("home.html", user_input=user_input, response=response, error_message=error_message, chat_history=chat_history)
 
-@app.route("/index")
-def index():    
-    return render_template('index.html')
+@app.route("/history")
+def history():    
+    return render_template('index.html', chat_history=chat_history)
 
 if __name__ == "__main__":
     app.run(debug=True)
