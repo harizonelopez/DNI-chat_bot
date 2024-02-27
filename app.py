@@ -1,11 +1,12 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from nltk.chat.util import Chat, reflections
+import random
 
 app = Flask(__name__)
 app.secret_key = 'aladinh-montext'
 
 pairs = [
-    ["who is Harison.O.O|Harison is who|who is Harison", ["This name refers to my creator and developer, a computer science student at one of the main universities in Kenya", "Harison is a tech student at Murang'a university in Kenya", "Harison is a coding enthusiast who came up with the idea to develop a chatbot called D.N.I"]],
+    ["who is Harison.O.O|Harison is who|who is Harison", ["This name refers to my creator and developer, a computer science student at one of the main universities in Kenya", "Harison is a tech student at Murang'a university in Kenya", "Harison is a coding enthusiast who came up with the idea to develop a chatbot called D.N.I."]],
     ["hi|hello|hey|hy|yoh what's up|hey niggah|hey buddy", ["Hello!", "Hi there!", "Hey!", "Hello, how can I assist you today!"]],
     ["how are you|how are you today|how are you doing", ["I'm doing well, thank you!", "I'm great. How about you?", "I'm cool, so what's up?"]],
     ["okay|cool|thanks|thank you|your welcome|ok", ["Your welcome, how can I help you today", "That's awesome", "I appreciate, I hope you are cool also"]],
@@ -23,21 +24,24 @@ chatbot = Chat(pairs, reflections)
 def home():
     return render_template("home.html")
 
-@app.route("/index")
-def index():    
-    return render_template('index.html')
-
 @app.route("/chat", methods=["POST"])
 def chat():
     error_message = "Oops!! The text seems not to be found."
-    user_input = request.form["user_input"]
+    user_input = request.form["user_input"].lower()
     
-    if user_input.lower() == 'quit':
-        response = "Goodbye!"
-    else:
-        response = chatbot.respond(user_input)
-
+    for pair in pairs:
+        keywords = pair[0].lower().split('|')
+        for keyword in keywords:
+            if keyword in user_input:
+                response = random.choice(pair[1])
+                return render_template("home.html", user_input=user_input, response=response, error_message=error_message)
+    
+    response = chatbot.respond(user_input)
     return render_template("home.html", user_input=user_input, response=response, error_message=error_message)
+
+@app.route("/index")
+def index():    
+    return render_template('index.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
