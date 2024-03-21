@@ -6,7 +6,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
-app.secret_key = 'aladinh-montext'
+app.secret_key = 'aladinh00-01montext'
 
 pairs = [
     ["who is Harison.O.O|Harison is who|who is Harison", ["This name refers to my creator and developer, a computer science student at one of the main universities in Kenya", "Harison is a tech student at Murang'a university in Kenya", "Harison is a coding enthusiast who came up with the idea to develop a chatbot called D.N.I."]],
@@ -44,7 +44,6 @@ def chat():
     response = chatbot.respond(user_input)
     
     chat_history.append({"user_input": user_input, "response": response})
-    #print(f"Chat history:", {chat_history})
     
     return render_template("home.html", user_input=user_input, response=response, error_message=error_message, chat_history=chat_history)
 
