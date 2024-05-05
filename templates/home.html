@@ -7,7 +7,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Bot</title>
     <style>
         body {
             display: flex;
@@ -97,11 +96,10 @@
                         class="form-control"
                         name="user_input" 
                         id="user_input" required
-                        placeholder="message Chatbot...?">
-                    </input>
+                        placeholder="message Chatbot..">
                     <br>
 
-                    <button type="submit" class="btn btn-primary"> Send </button>
+                    <button type="submit" class="btn btn-primary">Send</button>
                 </div>
             </form>
         </section>
@@ -130,14 +128,13 @@
             {% endif %}
         </section>
         
-        <h5 align="center"><button class="btn btn-primary"><a href = "{{ url_for('history') }}"> Search page </a></button></h5>
+        <h5 align="center"><button class="btn btn-primary"><a href="{{ url_for('history') }}">Search page</a></button></h5>
 
         <footer>
-            <p>&copy;2024 D.N.I Chatbot</p>
+            <p>&copy; 2024 Dev_aladinh production</p>
         </footer>
 
     </section>
 </body>
 </html>
-
 {% endblock %}
