@@ -6,7 +6,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
-app.secret_key = 'aladinh00-01montext'
+app.config['SECRET_KEY'] = 'aladinh00-010montext'
 
 pairs = [
     ["who is Harison.O.O|Harison is who|who is Harison", ["This name refers to my creator and developer, a computer science student at one of the main universities in Kenya", "Harison is a tech student at Murang'a university in Kenya", "Harison is a coding enthusiast who came up with the idea to develop a chatbot called D.N.I."]],
@@ -31,7 +31,7 @@ def home():
 
 @app.route("/chat", methods = ["POST"])
 def chat():
-    error_message = "Oops!! The text seems not to be found."
+    error_message = "OOPS!! The text seems not to be found."
     user_input = request.form["user_input"].lower()
     
     for pair in pairs:
