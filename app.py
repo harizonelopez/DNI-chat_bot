@@ -53,5 +53,11 @@ def chat():
 def history():    
     return render_template('index.html', chat_history=chat_history)
 
+@app.route("/clear_history", methods=["POST"])
+def clear_history():
+    global chat_history
+    chat_history = []
+    return redirect(url_for("history"))
+
 if __name__ == "__main__":
     app.run(debug=True)
