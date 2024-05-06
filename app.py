@@ -33,6 +33,7 @@ def home():
 def chat():
     error_message = "OOPS!! The text seems not to be found."
     user_input = request.form["user_input"].lower()
+    response = None
     
     for pair in pairs:
         keywords = pair[0].lower().split('|')
@@ -44,6 +45,7 @@ def chat():
     response = chatbot.respond(user_input)
     
     chat_history.append({"user_input": user_input, "response": response})
+    print(f"Chat history:", chat_history)
     
     return render_template("home.html", user_input=user_input, response=response, error_message=error_message, chat_history=chat_history)
 
