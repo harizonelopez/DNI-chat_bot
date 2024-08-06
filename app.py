@@ -4,7 +4,7 @@ import random
 import logging
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'aladinh00-010montext'
+app.config['SECRET_KEY']='aladinh00-010montext'
 logging.basicConfig(level=logging.DEBUG)
 
 pairs = [
@@ -27,7 +27,7 @@ chat_history = []
 def home():
     return render_template("home.html")
 
-@app.route("/chat", methods = ["POST"])
+@app.route("/chat", methods=["POST"])
 def chat():
     error_message = "404 ERROR, response is not validated."
     user_input = request.form["user_input"].lower()
