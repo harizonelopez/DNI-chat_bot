@@ -21,7 +21,7 @@ pairs = [
 ]
 
 chatbot = Chat(pairs, reflections)
-chat_history = []
+chat_history=[]
 
 @app.route("/")
 def home():
