@@ -1,5 +1,5 @@
 {% extends "base.html" %} 
-{% block title %} Searches page {% endblock %}
+{% block title %} Query page {% endblock %}
 
 {% block content %}
 <!DOCTYPE html>
@@ -26,6 +26,24 @@
             padding: 1em;
         }
 
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #373c49;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        footer {
+            background-color: #1e2229;
+            text-align: center;
+            padding: 0em 0;
+            position: fixed;
+            bottom: 0;
+            width: 65%;
+        }
+
         h1, h2 {
             color: #61dafb;
         }
@@ -50,24 +68,6 @@
             color: #a4acc4;
         }
 
-        section {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #373c49;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-        }
-
-        footer {
-            background-color: #1e2229;
-            text-align: center;
-            padding: 0em 0;
-            position: fixed;
-            bottom: 0;
-            width: 65%;
-        }
-
         a {
             color: #00FF00;
             text-decoration: none;
@@ -76,10 +76,8 @@
         a:hover {
             border-bottom: 2px solid #FF6347;
         }
-
     </style>
 </head>
-
 <body>
     <header>The Chat History Page Having Your Searches</header>
     <section>
@@ -93,20 +91,16 @@
                     {% endfor %}
                 </ul>
             </main>
-
             <form action="/clear_history" method="POST" align="center">
                 <input
                     type="submit"
                     value="Clear History">
             </form>
         </section>
-
         <h5 align="center"><button class="btn btn-primary"><a href="{{ url_for('home') }}"> Homepage </a></button></h5>
-
         <footer>
             <p>&copy; 2024 Dev_aladinh production</p>
         </footer>
-
     </section>
 </body>
 </html>
